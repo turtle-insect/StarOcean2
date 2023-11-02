@@ -28,9 +28,10 @@ namespace StarOcean2
 		private void Load()
 		{
 			Party.Clear();
-			for (uint i = 0; i < 1; i++)
+			for (uint i = 0; i < 13; i++)
 			{
-				Party.Add(new Character(0x988 + i * 500));
+				var ch = new Character(0x4FC + i * 1164);
+				Party.Add(ch);
 			}
 			Items.Clear();
 			for (uint i = 0; i < 0x37E0; i++)
