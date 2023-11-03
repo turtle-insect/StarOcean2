@@ -1,13 +1,26 @@
-﻿namespace StarOcean2
+﻿using System;
+using System.Collections.ObjectModel;
+
+namespace StarOcean2
 {
 	internal class Character
 	{
+		public ObservableCollection<BIT> Talents { get; private set; } = new ObservableCollection<BIT>();
+
 		private readonly uint mAddress;
 
-		public Character(uint address)
+		public Character(uint address, String name)
 		{
 			mAddress = address;
+			Name = name;
+
+			foreach (var talent in Info.Instance().Talent)
+			{
+				Talents.Add(new BIT(mAddress + 676 + talent.Value / 8, talent.Value % 8, talent.Name));
+			}
 		}
+
+		public String Name { get; private set; }
 
 		public uint Lv
 		{

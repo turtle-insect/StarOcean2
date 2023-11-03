@@ -42,7 +42,7 @@
 						<ColumnDefinition/>
 						<ColumnDefinition/>
 					</Grid.ColumnDefinitions>
-					<ListBox Name="ListBoxParty" ItemsSource="{Binding Party}"/>
+					<ListBox Name="ListBoxCharacters" ItemsSource="{Binding Characters}" DisplayMemberPath="Name"/>
 					<Grid Grid.Column="1">
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition/>
@@ -66,37 +66,59 @@
 							<RowDefinition/>
 						</Grid.RowDefinitions>
 						<Label Content="Lv"/>
-						<TextBox Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.Lv, UpdateSourceTrigger=PropertyChanged}"/>
+						<TextBox Grid.Column="1" Text="{Binding ElementName=ListBoxCharacters, Path=SelectedItem.Lv, UpdateSourceTrigger=PropertyChanged}"/>
 						<Label Grid.Row="1" Content="Exp"/>
-						<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.Exp, UpdateSourceTrigger=PropertyChanged}"/>
+						<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ElementName=ListBoxCharacters, Path=SelectedItem.Exp, UpdateSourceTrigger=PropertyChanged}"/>
 						<Label Grid.Row="2" Content="BaseHP"/>
-						<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.BaseHP, UpdateSourceTrigger=PropertyChanged}"/>
+						<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ElementName=ListBoxCharacters, Path=SelectedItem.BaseHP, UpdateSourceTrigger=PropertyChanged}"/>
 						<Label Grid.Row="3" Content="HP"/>
-						<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.HP, UpdateSourceTrigger=PropertyChanged}"/>
+						<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding ElementName=ListBoxCharacters, Path=SelectedItem.HP, UpdateSourceTrigger=PropertyChanged}"/>
 						<Label Grid.Row="4" Content="BaseMP"/>
-						<TextBox Grid.Row="4" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.BaseMP, UpdateSourceTrigger=PropertyChanged}"/>
+						<TextBox Grid.Row="4" Grid.Column="1" Text="{Binding ElementName=ListBoxCharacters, Path=SelectedItem.BaseMP, UpdateSourceTrigger=PropertyChanged}"/>
 						<Label Grid.Row="5" Content="MP"/>
-						<TextBox Grid.Row="5" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.MP, UpdateSourceTrigger=PropertyChanged}"/>
+						<TextBox Grid.Row="5" Grid.Column="1" Text="{Binding ElementName=ListBoxCharacters, Path=SelectedItem.MP, UpdateSourceTrigger=PropertyChanged}"/>
 						<Label Grid.Row="6" Content="ATK"/>
-						<TextBox Grid.Row="6" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.ATK, UpdateSourceTrigger=PropertyChanged}"/>
+						<TextBox Grid.Row="6" Grid.Column="1" Text="{Binding ElementName=ListBoxCharacters, Path=SelectedItem.ATK, UpdateSourceTrigger=PropertyChanged}"/>
 						<Label Grid.Row="7" Content="DEF"/>
-						<TextBox Grid.Row="7" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.DEF, UpdateSourceTrigger=PropertyChanged}"/>
+						<TextBox Grid.Row="7" Grid.Column="1" Text="{Binding ElementName=ListBoxCharacters, Path=SelectedItem.DEF, UpdateSourceTrigger=PropertyChanged}"/>
 						<Label Grid.Row="8" Content="HIT"/>
-						<TextBox Grid.Row="8" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.HIT, UpdateSourceTrigger=PropertyChanged}"/>
+						<TextBox Grid.Row="8" Grid.Column="1" Text="{Binding ElementName=ListBoxCharacters, Path=SelectedItem.HIT, UpdateSourceTrigger=PropertyChanged}"/>
 						<Label Grid.Row="9" Content="AVD"/>
-						<TextBox Grid.Row="9" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.AVD, UpdateSourceTrigger=PropertyChanged}"/>
+						<TextBox Grid.Row="9" Grid.Column="1" Text="{Binding ElementName=ListBoxCharacters, Path=SelectedItem.AVD, UpdateSourceTrigger=PropertyChanged}"/>
 						<Label Grid.Row="10" Content="INT"/>
-						<TextBox Grid.Row="10" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.INT, UpdateSourceTrigger=PropertyChanged}"/>
+						<TextBox Grid.Row="10" Grid.Column="1" Text="{Binding ElementName=ListBoxCharacters, Path=SelectedItem.INT, UpdateSourceTrigger=PropertyChanged}"/>
 						<Label Grid.Row="11" Content="LUC"/>
-						<TextBox Grid.Row="11" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.LUC, UpdateSourceTrigger=PropertyChanged}"/>
+						<TextBox Grid.Row="11" Grid.Column="1" Text="{Binding ElementName=ListBoxCharacters, Path=SelectedItem.LUC, UpdateSourceTrigger=PropertyChanged}"/>
 						<Label Grid.Row="12" Content="STM"/>
-						<TextBox Grid.Row="12" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.STM, UpdateSourceTrigger=PropertyChanged}"/>
+						<TextBox Grid.Row="12" Grid.Column="1" Text="{Binding ElementName=ListBoxCharacters, Path=SelectedItem.STM, UpdateSourceTrigger=PropertyChanged}"/>
 						<Label Grid.Row="13" Content="CRT"/>
-						<TextBox Grid.Row="13" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.CRT, UpdateSourceTrigger=PropertyChanged}"/>
+						<TextBox Grid.Row="13" Grid.Column="1" Text="{Binding ElementName=ListBoxCharacters, Path=SelectedItem.CRT, UpdateSourceTrigger=PropertyChanged}"/>
 						<Label Grid.Row="14" Content="GUTS"/>
-						<TextBox Grid.Row="14" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.GUTS, UpdateSourceTrigger=PropertyChanged}"/>
+						<TextBox Grid.Row="14" Grid.Column="1" Text="{Binding ElementName=ListBoxCharacters, Path=SelectedItem.GUTS, UpdateSourceTrigger=PropertyChanged}"/>
 					</Grid>
+					<TabControl Grid.Column="2">
+						<TabItem Header="Talent">
+							<ListBox ItemsSource="{Binding ElementName=ListBoxCharacters, Path=SelectedItem.Talents}">
+								<ListBox.ItemTemplate>
+									<DataTemplate>
+										<CheckBox Content="{Binding Name}" IsChecked="{Binding Value}"/>
+									</DataTemplate>
+								</ListBox.ItemTemplate>
+							</ListBox>
+						</TabItem>
+					</TabControl>
 				</Grid>
+			</TabItem>
+			<TabItem Header="Party">
+				<ListBox ItemsSource="{Binding Party}">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<ComboBox ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:MainWindow}, Path=DataContext.Info.Character}"
+									  SelectedIndex="{Binding Value}"
+									  DisplayMemberPath="Name" Width="200"/>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
 			</TabItem>
 			<TabItem Header="Item">
 				<DockPanel>

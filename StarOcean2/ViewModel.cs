@@ -9,14 +9,15 @@ namespace StarOcean2
 	{
 		public event PropertyChangedEventHandler? PropertyChanged;
 
+		public Info Info { get; private set; } = Info.Instance();
+		public Basic Basic { get; private set; } = new Basic();
+		public ObservableCollection<Character> Characters { get; private set; } = new ObservableCollection<Character>();
+		public ObservableCollection<Number> Party { get; private set; } = new ObservableCollection<Number>();
+		public ObservableCollection<Item> Items { get; private set; } = new ObservableCollection<Item>();
 
-		public Basic Basic { get; set; } = new Basic();
-		public ObservableCollection<Character> Party { get; set; } = new ObservableCollection<Character>();
-		public ObservableCollection<Item> Items { get; set; } = new ObservableCollection<Item>();
-
-		public CommandAction OpenFileCommand { get; set; }
-		public CommandAction SaveFileCommand { get; set; }
-		public CommandAction AllItemCountMaxCommand { get; set; }
+		public CommandAction OpenFileCommand { get; private set; }
+		public CommandAction SaveFileCommand { get; private set; }
+		public CommandAction AllItemCountMaxCommand { get; private set; }
 
 		public ViewModel()
 		{
@@ -27,12 +28,21 @@ namespace StarOcean2
 
 		private void Load()
 		{
-			Party.Clear();
+			Characters.Clear();
 			for (uint i = 0; i < 13; i++)
 			{
-				var ch = new Character(0x4FC + i * 1164);
-				Party.Add(ch);
+				var ch = new Character(0x4FC + i * 1164, Info.Instance().Character[(int)i + 1].Name);
+				Characters.Add(ch);
 			}
+
+
+			Party.Clear();
+			for(uint i = 0; i < 8; i++)
+			{
+				Party.Add(new Number(0x57CD4 + i * 4, 4, 0, 13));
+			}
+
+
 			Items.Clear();
 			for (uint i = 0; i < 0x37E0; i++)
 			{
