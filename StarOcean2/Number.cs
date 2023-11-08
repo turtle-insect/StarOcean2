@@ -21,6 +21,8 @@ namespace StarOcean2
 			mMax = max;
 		}
 
+		public String Name { get; set; }
+
 		public uint Value
 		{
 			get => SaveData.Instance().ReadNumber(mAddress, mSize);

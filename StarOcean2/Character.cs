@@ -6,6 +6,7 @@ namespace StarOcean2
 	internal class Character
 	{
 		public ObservableCollection<BIT> Talents { get; private set; } = new ObservableCollection<BIT>();
+		public ObservableCollection<Number> Skills { get; private set; } = new ObservableCollection<Number>();
 
 		private readonly uint mAddress;
 
@@ -17,6 +18,13 @@ namespace StarOcean2
 			foreach (var talent in Info.Instance().Talent)
 			{
 				Talents.Add(new BIT(mAddress + 676 + talent.Value / 8, talent.Value % 8, talent.Name));
+			}
+
+			foreach (var skill in Info.Instance().Skill)
+			{
+				var value = new Number(mAddress + 420 + skill.Value * 4, 4, 0, 10);
+				value.Name = skill.Name;
+				Skills.Add(value);
 			}
 		}
 
@@ -110,6 +118,12 @@ namespace StarOcean2
 		{
 			get => SaveData.Instance().ReadNumber(mAddress + 72, 4);
 			set => Util.WriteNumber(mAddress + 72, 4, value, 1, 9999);
+		}
+
+		public uint BP
+		{
+			get => SaveData.Instance().ReadNumber(mAddress + 544, 4);
+			set => Util.WriteNumber(mAddress + 544, 4, value, 0, 9999);
 		}
 	}
 }

@@ -8,6 +8,7 @@ namespace StarOcean2
 		private static Info? mThis;
 		public List<NameValueInfo> Character { get; private set; } = new List<NameValueInfo>();
 		public List<NameValueInfo> Talent { get; private set; } = new List<NameValueInfo>();
+		public List<NameValueInfo> Skill { get; private set; } = new List<NameValueInfo>();
 
 		private Info() { }
 
@@ -40,6 +41,7 @@ namespace StarOcean2
 		{
 			AppendList("info\\char.txt", Character);
 			AppendList("info\\talent.txt", Talent);
+			AppendList("info\\skill.txt", Skill);
 		}
 
 		private void AppendList<Type>(String filename, List<Type> items)
