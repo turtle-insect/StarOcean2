@@ -21,7 +21,7 @@ namespace StarOcean2
 			mMax = max;
 		}
 
-		public String Name { get; set; }
+		public String Name { get; set; } = "";
 
 		public uint Value
 		{
