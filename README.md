@@ -1,3 +1,5 @@
+![DL Count](https://img.shields.io/github/downloads/turtle-insect/StarOcean2/total.svg)
+
 # StarOcean2
 Switch STAR OCEAN THE SECOND STORY R SaveDate Editor
 
