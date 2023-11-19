@@ -17,13 +17,15 @@ namespace StarOcean2
 
 		public CommandAction OpenFileCommand { get; private set; }
 		public CommandAction SaveFileCommand { get; private set; }
-		public CommandAction AllItemCountMaxCommand { get; private set; }
+		public CommandAction AllItemCountCommand { get; private set; }
+
+		public uint ItemCount { get; set; } = 10;
 
 		public ViewModel()
 		{
 			OpenFileCommand = new CommandAction(OpenFile);
 			SaveFileCommand = new CommandAction(SaveFile);
-			AllItemCountMaxCommand = new CommandAction(AllItemCountMax);
+			AllItemCountCommand = new CommandAction(AllItemCount);
 		}
 
 		private void Load()
@@ -68,13 +70,13 @@ namespace StarOcean2
 			SaveData.Instance().Save();
 		}
 
-		private void AllItemCountMax(Object? obj)
+		private void AllItemCount(Object? obj)
 		{
 			for (uint i = 0; i < 0x37E0; i++)
 			{
 				uint address = 0x3FD4 + i * 24;
 				SaveData.Instance().WriteNumber(address + 2, 2, i);
-				SaveData.Instance().WriteNumber(address + 4, 1, 99);
+				SaveData.Instance().WriteNumber(address + 4, 1, ItemCount);
 				SaveData.Instance().WriteNumber(address + 16, 1, 1);
 				SaveData.Instance().WriteNumber(address + 17, 1, 1);
 			}

@@ -138,7 +138,11 @@
 			</TabItem>
 			<TabItem Header="Item">
 				<DockPanel>
-					<Button DockPanel.Dock="Bottom" Content="All Item 99" Command="{Binding AllItemCountMaxCommand}"/>
+					<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
+						<Label Content="All Item "/>
+						<TextBox Width="80" Text="{Binding ItemCount, UpdateSourceTrigger=PropertyChanged}"/>
+						<Button Content="Execute" Command="{Binding AllItemCountCommand}"/>
+					</StackPanel>
 					<ListBox ItemsSource="{Binding Items}">
 						<ListBox.ItemTemplate>
 							<DataTemplate>
