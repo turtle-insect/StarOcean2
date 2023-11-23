@@ -33,13 +33,13 @@ namespace StarOcean2
 		public uint Lv
 		{
 			get => SaveData.Instance().ReadNumber(mAddress, 1);
-			set => Util.WriteNumber(mAddress, 1, value, 1, 99);
+			set => Util.WriteNumber(mAddress, 1, value, 1, 255);
 		}
 
 		public uint Exp
 		{
 			get => SaveData.Instance().ReadNumber(mAddress + 4, 4);
-			set => Util.WriteNumber(mAddress + 4, 4, value, 0, 9999999);
+			set => Util.WriteNumber(mAddress + 4, 4, value, 0, 99999999);
 		}
 
 		public uint BaseHP
