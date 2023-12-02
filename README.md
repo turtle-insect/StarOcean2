@@ -26,3 +26,7 @@ SaveData = savedata0x
 * Edit SavaData
 * Save SaveData
 * SaveData Import
+
+# Credit
+[SkillerCMP](https://github.com/SkillerCMP)
+https://docs.google.com/spreadsheets/d/1FBkLqn542IIYeFAg3fF1c6W6-pi6ympMFjsJGogquqI
