@@ -7,6 +7,7 @@ namespace StarOcean2
     {
 		private static Info? mThis;
 		public List<NameValueInfo> Character { get; private set; } = new List<NameValueInfo>();
+		public List<NameValueInfo> Item { get; private set; } = new List<NameValueInfo>();
 		public List<NameValueInfo> Talent { get; private set; } = new List<NameValueInfo>();
 		public List<NameValueInfo> Skill { get; private set; } = new List<NameValueInfo>();
 
@@ -40,6 +41,7 @@ namespace StarOcean2
 		private void Init()
 		{
 			AppendList("info\\char.txt", Character);
+			AppendList("info\\item.txt", Item);
 			AppendList("info\\talent.txt", Talent);
 			AppendList("info\\skill.txt", Skill);
 		}

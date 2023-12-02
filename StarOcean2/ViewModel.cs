@@ -18,6 +18,8 @@ namespace StarOcean2
 		public CommandAction OpenFileCommand { get; private set; }
 		public CommandAction SaveFileCommand { get; private set; }
 		public CommandAction AllItemCountCommand { get; private set; }
+		public CommandAction AllItemClearCommand { get; private set; }
+		public CommandAction ItemChoiceCommand { get; private set; }
 
 		public uint ItemCount { get; set; } = 10;
 
@@ -26,6 +28,8 @@ namespace StarOcean2
 			OpenFileCommand = new CommandAction(OpenFile);
 			SaveFileCommand = new CommandAction(SaveFile);
 			AllItemCountCommand = new CommandAction(AllItemCount);
+			AllItemClearCommand = new CommandAction(AllItemClear);
+			ItemChoiceCommand = new CommandAction(ItemChoice);
 		}
 
 		private void Load()
@@ -39,7 +43,7 @@ namespace StarOcean2
 
 
 			Party.Clear();
-			for(uint i = 0; i < 8; i++)
+			for (uint i = 0; i < 8; i++)
 			{
 				Party.Add(new Number(0x57CD4 + i * 4, 4, 0, 13));
 			}
@@ -80,6 +84,35 @@ namespace StarOcean2
 				SaveData.Instance().WriteNumber(address + 16, 1, 1);
 				SaveData.Instance().WriteNumber(address + 17, 1, 1);
 			}
+			Load();
+		}
+
+		private void AllItemClear(Object? obj)
+		{
+			for (uint i = 0; i < 0x37E0; i++)
+			{
+				uint address = 0x3FD4 + i * 24;
+				SaveData.Instance().WriteNumber(address + 2, 2, 0);
+				SaveData.Instance().WriteNumber(address + 4, 1, 0);
+				SaveData.Instance().WriteNumber(address + 16, 1, 0);
+				SaveData.Instance().WriteNumber(address + 17, 1, 0);
+			}
+			Load();
+		}
+
+		private void ItemChoice(Object? obj)
+		{
+			var dlg = new ItemChoiceWindow();
+			dlg.ID = 0;
+			dlg.ShowDialog();
+
+			if (dlg.ID == 0) return;
+
+			uint address = 0x3FD4 + dlg.ID * 24;
+			SaveData.Instance().WriteNumber(address + 2, 2, dlg.ID);
+			SaveData.Instance().WriteNumber(address + 4, 1, 1);
+			SaveData.Instance().WriteNumber(address + 16, 1, 1);
+			SaveData.Instance().WriteNumber(address + 17, 1, 1);
 			Load();
 		}
 	}
