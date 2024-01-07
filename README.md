@@ -11,7 +11,7 @@ https://store-jp.nintendo.com/list/software/70010000062078.html
 
 # Run Spec
 * Windows 10
-* .NET Framework 4.7.2
+* [.NET 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 * SaveData Export
 * SaveData Import
 
